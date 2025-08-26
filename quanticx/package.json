@@ -1,9 +1,0 @@
-{
-  name: quanticx,
-  private: true,
-  workspaces: [
-    webapp,
-    admin
-  ],
-  scripts: {
-    dev:webapp: npm
