@@ -1,0 +1,5 @@
+:root{ --bg:#0E0E10; }
+html,body,#app{ height:100%; }
+body{ margin:0; background:var(--bg); color:#fff; font-family:Inter,system-ui,sans-serif; }
+.cx{ display:grid; place-items:center; height:100%; text-align:center; }
+h1{ background: linear-gradient(90deg,#FF1CC0,#1C3AFF); -webkit-background-clip:text; background-clip:text; color:transparent; }
