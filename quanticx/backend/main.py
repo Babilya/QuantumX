@@ -20,8 +20,11 @@ from backend.routers.polls import router as polls_router
 from backend.middleware import setup_rate_limiter
 from backend.db import engine
 from backend.models.db_models import Base
+from backend.observability import setup_logging, setup_sentry
 
-app = FastAPI(title="QuanticX API", version="0.2.0")
+setup_logging()
+setup_sentry()
+app = FastAPI(title="QuanticX API", version="0.3.0")
 
 app.add_middleware(
     CORSMiddleware,
