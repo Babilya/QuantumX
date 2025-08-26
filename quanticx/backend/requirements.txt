@@ -8,3 +8,5 @@ aiosqlite==0.20.0
 redis==5.0.7
 slowapi==0.1.9
 monobank
+PyJWT==2.9.0
+passlib[bcrypt]==1.7.4

@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.routers.ai import router as ai_router
 from backend.routers.payments import router as payments_router
 from backend.routers.currency import router as currency_router
+from backend.routers.auth import router as auth_router
 
 app = FastAPI(title="QuanticX API", version="0.1.0")
 
@@ -22,6 +23,7 @@ async def health():
 app.include_router(ai_router, prefix="/ai", tags=["ai"]) 
 app.include_router(payments_router, prefix="/payments", tags=["payments"]) 
 app.include_router(currency_router, prefix="/currency", tags=["currency"]) 
+app.include_router(auth_router, prefix="/auth", tags=["auth"]) 
 
 if __name__ == "__main__":
     import uvicorn
