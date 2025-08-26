@@ -1,1 +1,9 @@
-body{ margin:0; background:#0E0E10; font-family:Inter,system-ui,sans-serif }
+body{ margin:0; background:#0E0E10; font-family:Inter,system-ui,sans-serif; color:#fff }
+.layout{ display:grid; grid-template-columns:240px 1fr; height:100vh }
+aside{ background:#0E0E10; padding:12px; border-right:1px solid #222 }
+aside div{ padding:8px 10px; cursor:pointer; border-radius:8px }
+aside div.active{ background: linear-gradient(90deg,#FF1CC0,#1C3AFF); color:#fff }
+section{ padding:20px }
+.panel { display:grid; gap:12px; max-width:520px }
+.panel input{ padding:8px 10px; border-radius:8px; border:1px solid #333; background:#151518; color:#fff }
+.panel button{ background:linear-gradient(90deg,#FF1CC0,#1C3AFF); color:#fff; border:none; padding:10px 14px; border-radius:10px }

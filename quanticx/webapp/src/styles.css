@@ -1,5 +1,6 @@
-:root{ --bg:#0E0E10; }
-html,body,#app{ height:100%; }
-body{ margin:0; background:var(--bg); color:#fff; font-family:Inter,system-ui,sans-serif; }
-.cx{ display:grid; place-items:center; height:100%; text-align:center; }
-h1{ background: linear-gradient(90deg,#FF1CC0,#1C3AFF); -webkit-background-clip:text; background-clip:text; color:transparent; }
+:root { color-scheme: light dark; --bg:#0E0E10; --fg:#fff }
+body { margin:0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--fg) }
+.app header { display:flex; align-items:center; justify-content:space-between; padding:12px 16px }
+.bottom { position:fixed; left:0; right:0; bottom:0; display:flex; gap:8px; padding:10px; background:#101015; border-top:1px solid #23232a }
+.bottom button { flex:1; padding:10px; border-radius:10px; border:1px solid #333; background:#15151a; color:#fff }
+.bottom button.active { background: linear-gradient(90deg,#FF1CC0,#1C3AFF); border:none }
