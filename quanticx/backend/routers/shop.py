@@ -21,11 +21,11 @@ class ShopItem(BaseModel):
     tags: List[str] = []
 
 
-CATALOG: list[ShopItem] = [
-    ShopItem(sku=f"EMOJI_{i}", title=f"Emoji Pack {i}", price=1.0 + (i % 5), tags=["emoji", "digital"]) for i in range(1, 51)
-] + [
-    ShopItem(sku=f"SKIN_{i}", title=f"Skin {i}", price=2.0 + (i % 7), tags=["skin", "theme"]) for i in range(1, 51)
-]
+CATALOG: list[ShopItem] = (
+    [ShopItem(sku=f"EMOJI_{i}", title=f"Emoji Pack {i}", price=1.0 + (i % 5), tags=["emoji", "digital"]) for i in range(1, 251)]
+    + [ShopItem(sku=f"SKIN_{i}", title=f"Skin {i}", price=2.0 + (i % 7), tags=["skin", "theme"]) for i in range(1, 150)]
+    + [ShopItem(sku=f"REPORT_{i}", title=f"OSINT Report {i}", price=5.0 + (i % 10), tags=["report", "osint"]) for i in range(1, 120)]
+)
 
 
 @router.get("/catalog")

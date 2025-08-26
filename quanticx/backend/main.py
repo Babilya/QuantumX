@@ -12,6 +12,11 @@ from backend.routers.casino import router as casino_router
 from backend.routers.guarantor import router as guarantor_router
 from backend.routers.analytics import router as analytics_router
 from backend.routers.chat import router as chat_router
+from backend.routers.groups import router as groups_router
+from backend.routers.subscriptions import router as subs_router
+from backend.routers.affiliate import router as affiliate_router
+from backend.routers.leaderboards import router as leaderboards_router
+from backend.routers.polls import router as polls_router
 from backend.middleware import setup_rate_limiter
 from backend.db import engine
 from backend.models.db_models import Base
@@ -48,6 +53,11 @@ app.include_router(casino_router, prefix="/casino", tags=["casino"])
 app.include_router(guarantor_router, prefix="/guarantor", tags=["guarantor"]) 
 app.include_router(analytics_router, prefix="/analytics", tags=["analytics"]) 
 app.include_router(chat_router, prefix="", tags=["ws"]) 
+app.include_router(groups_router, prefix="/groups", tags=["groups"]) 
+app.include_router(subs_router, prefix="/subscriptions", tags=["subscriptions"]) 
+app.include_router(affiliate_router, prefix="/affiliate", tags=["affiliate"]) 
+app.include_router(leaderboards_router, prefix="/leaderboards", tags=["leaderboards"]) 
+app.include_router(polls_router, prefix="/polls", tags=["polls"]) 
 
 if __name__ == "__main__":
     import uvicorn
