@@ -13,6 +13,11 @@ WEBAPP_URL = os.getenv("TELEGRAM_WEBAPP_URL", "https://example.com")
 
 bot = Bot(token=BOT_TOKEN, parse_mode=ParseMode.HTML)
 dp = Dispatcher()
+try:
+    from bot.handlers.groups import router as groups_router
+    dp.include_router(groups_router)
+except Exception:
+    pass
 
 @dp.message(CommandStart())
 async def start(message: Message):
