@@ -5,8 +5,11 @@ from backend.routers.ai import router as ai_router
 from backend.routers.payments import router as payments_router
 from backend.routers.currency import router as currency_router
 from backend.routers.auth import router as auth_router
+from backend.middleware import setup_rate_limiter
+from backend.db import engine
+from backend.models.db_models import Base
 
-app = FastAPI(title="QuanticX API", version="0.1.0")
+app = FastAPI(title="QuanticX API", version="0.2.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -15,6 +18,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+setup_rate_limiter(app)
+
+@app.on_event("startup")
+async def on_startup():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
 
 @app.get("/health")
 async def health():
