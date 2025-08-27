@@ -21,6 +21,10 @@ from backend.middleware import setup_rate_limiter
 from backend.db import engine
 from backend.models.db_models import Base
 from backend.observability import setup_logging, setup_sentry, metrics_middleware, metrics_response
+from backend.tracing import setup_tracing
+from backend.routers.osint_export import router as osint_export_router
+from backend.routers.flags import router as flags_router
+from backend.routers.fraud import router as fraud_router
 from backend.routers.referral import router as referral_router
 from backend.routers.wallet import router as wallet_router
 from backend.routers.games import router as games_router
@@ -45,6 +49,7 @@ app.add_middleware(
 
 setup_rate_limiter(app)
 app.middleware('http')(metrics_middleware)
+setup_tracing(app)
 
 @app.on_event("startup")
 async def on_startup():
@@ -84,6 +89,9 @@ app.include_router(vip_router, prefix="/vip", tags=["vip"])
 app.include_router(shop_cart_router, prefix="/shop", tags=["shop"])
 app.include_router(profile_router, prefix="/profile", tags=["profile"])
 app.include_router(escrow_router, prefix="/escrow", tags=["escrow"])
+app.include_router(osint_export_router, prefix="/osint/export", tags=["osint"]) 
+app.include_router(flags_router, prefix="/flags", tags=["flags"]) 
+app.include_router(fraud_router, prefix="/fraud", tags=["fraud"]) 
 
 if __name__ == "__main__":
     import uvicorn
