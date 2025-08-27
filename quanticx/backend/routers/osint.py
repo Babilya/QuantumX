@@ -6,6 +6,7 @@ from pydantic import BaseModel
 import aiohttp
 
 from backend.security import require_roles
+from backend.redis_client import get_redis
 from backend.services.ai import ai_query
 
 router = APIRouter()
@@ -26,5 +27,9 @@ async def osint_search(body: SearchBody, user=Depends(require_roles("analyst", "
         async with session.get(url) as resp:
             data = await resp.json()
     summary = await ai_query(f"Підсумуй публічні дані: {data}")
-    return {"results": data, "summary": summary}
+    r = get_redis()
+    key = f"osint:{body.query}"
+    r.hset(key, "results", str(data))
+    r.hset(key, "summary", str(summary))
+    return {"results": data, "summary": summary, "key": key}
 

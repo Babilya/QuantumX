@@ -40,6 +40,17 @@ class Transaction(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
 
+class Escrow(Base):
+    __tablename__ = 'escrow'
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    buyer_id: Mapped[str] = mapped_column(String)
+    seller_id: Mapped[str] = mapped_column(String)
+    amount: Mapped[float] = mapped_column(Float)
+    status: Mapped[str] = mapped_column(String, default='created')  # created | released | disputed
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+
 class GroupSettings(Base):
     __tablename__ = "group_settings"
 
